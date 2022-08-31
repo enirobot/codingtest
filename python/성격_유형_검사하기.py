@@ -6,26 +6,26 @@ def solution(survey: List[str], choices: List[int]) -> str:
 
     checked = defaultdict(int)
 
-    for word, choice in zip(survey, choices):
+    for types, choice in zip(survey, choices):
         quotient = choice // 4
         remainder = choice % 4
+        personality_type = types[quotient];
 
-        checked[word[quotient]] += 4 - remainder if quotient < 1 else remainder
+        checked[personality_type] += 4 - remainder if quotient < 1 else remainder
 
     answer = ""
-    for word in personality_inventory:
-        first_word, second_word = word[0], word[-1]
-        first_count, second_count = checked[first_word], checked[second_word]
+    for first_type, second_type in map(lambda x: [*x], personality_inventory):
+        first_count, second_count = checked[first_type], checked[second_type]
         
         if first_count > second_count:
-            answer += first_word
-        elif first_count == second_count:
-            if first_word > second_word:
-                answer += second_word
-            else:
-                answer += first_word
+            answer += first_type
+        elif first_count < second_count:
+            answer += second_type
         else:
-            answer += second_word
+            if first_type > second_type:
+                answer += second_type
+            else:
+                answer += first_type
 
     return answer
 
