@@ -1,10 +1,8 @@
 def caculate_divisor(num):
     root_square = num**(1/2)
-    check_square = False
     answer = 0
     
     if root_square == int(root_square):
-        check_square = True
         root_square = int(root_square)
         answer += 1
     else:
