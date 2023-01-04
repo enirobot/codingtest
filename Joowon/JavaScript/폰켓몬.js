@@ -8,3 +8,5 @@ function solution(nums) {
     
     return answer;
 }
+
+console.log(solution([3,1,2,3])); // 답: 2
