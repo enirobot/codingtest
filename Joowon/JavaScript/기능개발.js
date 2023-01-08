@@ -19,5 +19,5 @@ function solution(progresses, speeds) {
     return answer;
 }
 
-console.log(solution([93, 30, 55], 	[1, 30, 5])); // 답: [2, 1]
+console.log(solution([93, 30, 55], [1, 30, 5])); // 답: [2, 1]
 console.log(solution([95, 90, 99, 99, 80, 99] , [1, 1, 1, 1, 1, 1])); // 답: [1, 3, 2]
