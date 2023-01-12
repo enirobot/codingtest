@@ -1,11 +1,10 @@
 function solution(bridge_length, weight, truck_weights) {
-    var answer = 0;
-    let cnt = 0;
+    let cnt = 1;
     let bridgeWeight = 0;
     let bridgeQue = [];
 
-    while (bridgeQue || truck_weights) {
-        if (bridgeQue && cnt === bridgeQue[0].time) {
+    while (bridgeQue.length || truck_weights.length) {
+        if (bridgeQue.length && cnt >= bridgeQue[0].time) {
             const bridge = bridgeQue.shift();
 
             bridgeWeight -= bridge.weight;
@@ -15,12 +14,18 @@ function solution(bridge_length, weight, truck_weights) {
             const truck = truck_weights.shift();
 
             bridgeWeight += truck;
-            bridgeQue.push({weight: truck, time: cnt+bridge_length+1});
+            bridgeQue.push({weight: truck, time: cnt+bridge_length});
+        } else {
+            if (bridgeQue.length) {
+                cnt = bridgeQue[0].time - 1;
+            }
         }
+
+        cnt++;
     }
 
 
-    return answer;
+    return cnt-1;
 }
 
 console.log(solution(2, 10, [7,4,5,6])); // 답: 8
