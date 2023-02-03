@@ -1,0 +1,73 @@
+const permutations = (arr, selectNumber) => {
+    const result = [];
+    if (selectNumber === 1) return arr.map(ele => [ele]);
+
+    arr.forEach((ele, i, origin) => {
+        const fixed = ele;
+        const restList = origin;
+        const permuteList = permutations(restList, selectNumber-1);
+        const combList = permuteList.map(numList => [fixed, ...numList]);
+
+        result.push(...combList);
+    });
+
+    return result;
+}
+
+const result = [];
+
+const combinations = (nums, selectNumber, arr = []) => {
+    if (selectNumber === 3) result.push([...arr]);
+
+    for (let i=0;i<nums.length;i++) {
+        arr.push(nums[i]);
+        combinations(nums.filter((_, index) => index !== i), selectNumber+1, arr);
+        arr.pop();
+    }
+}
+
+const result2 = [];
+
+const ccombinations = (nums, selectNumber, arr=[]) => {
+    if (selectNumber === 3){
+        result2.push([...arr]);
+    }
+    else {
+        for (let i=0;i<nums.length;i++) {
+            arr.push(nums[i]);
+            ccombinations(nums.slice(i+1), selectNumber+1, arr);
+            arr.pop();
+        }
+    }
+}
+
+const permutationssss = (arr, selectNumber) => {
+    const result = [];
+
+    if (selectNumber === 1) return arr.map(ele => [ele]);
+
+    arr.forEach((ele, i, origin) => {
+        const restArr = origin.slice(i+1);
+        const permuteList = permutationssss(restArr, selectNumber-1);
+        const combList = permuteList.map(num => [ele, ...num]);
+
+        result.push(...combList);
+    });
+
+    return result;
+}
+
+function solution(jobs) {
+    var answer = 100000000;
+    const timeList = permutationssss(jobs, 3);
+    ccombinations(jobs, 0);
+    
+    answer = jobs[4] < jobs[3] ? jobs[4] : jobs[3];
+    
+    
+    return answer;
+}
+
+// console.log(solution([[0, 3], [1, 9], [2, 6]])); // 답: 9
+console.log(solution([1, 2, 3, 4])); // 답: 9
+console.log(6>>0);
