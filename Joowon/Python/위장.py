@@ -1,10 +1,3 @@
-def factorial(num):
-    cnt = 1
-    for i in range(num, 1, -1):
-        cnt *= i
-    
-    return cnt
-
 def solution(clothes):
     answer = 1
     clothDict = dict()
@@ -27,3 +20,5 @@ def solution(clothes):
     
     
     return answer - 1
+
+    print(solution())
