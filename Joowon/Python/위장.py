@@ -21,4 +21,5 @@ def solution(clothes):
     
     return answer - 1
 
-    print(solution())
+print(solution([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]])) # 답: 5
+print(solution([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]])) # 답: 3
