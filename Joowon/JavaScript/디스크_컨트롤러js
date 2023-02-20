@@ -59,8 +59,8 @@ const permutationssss = (arr, selectNumber) => {
 
 function solution(jobs) {
     var answer = 100000000;
-    const timeList = permutationssss(jobs, 3);
-    ccombinations(jobs, 0);
+    const timeList = permutationssss(jobs, 4);
+    console.log(timeList);
     
     answer = jobs[4] < jobs[3] ? jobs[4] : jobs[3];
     
