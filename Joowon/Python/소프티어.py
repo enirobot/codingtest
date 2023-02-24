@@ -1,15 +1,17 @@
-def dfs(answer, nodeList, sumList, visited, graph):
-    cpNodeList = nodeList[:]
+def dfs(preNode, currentNode, sumList, lineNum, visited, graph):
+    currentList = graph[currentNode]
     
-    while cpNodeList:
-        nextNode, nextDistance = cpNodeList.pop()
-
+    for i in range(len(currentList)):
+        nextNode, weight = currentList[i]
+        
         if nextNode in visited:
             continue
         
         visited.append(nextNode)
-        sumList.append(answer + nextDistance)
-        dfs(answer + nextDistance, graph[nextNode], sumList, visited, graph)
+        lineNum[currentNode] += dfs(currentNode, nextNode, sumList, lineNum, visited, graph)
+        sumList[currentNode]
+        
+    return lineNum[currentNode]
 
 if __name__ == '__main__':
     N = 7
@@ -22,9 +24,9 @@ if __name__ == '__main__':
         6: [[3, 1]],
         7: [[4, 6]]
     }
-    
-    for i in range(1, 7):
-        visited = [i]
-        sumList = []
-        dfs(0, graph[i], sumList, visited, graph)
-        print(sum(sumList))
+
+    visited = [1]
+    lineNum = [1 for i in range(N+1)]
+    sumList = [1 for i in range(N+1)]
+    dfs(1, 1, sumList, lineNum, visited, graph)
+    print(sum(sumList))
